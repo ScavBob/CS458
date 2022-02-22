@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/intlTelInput.css' %}">
+<head>
+    <meta charset="UTF-8">
+    <title>Neftlix Login</title>
+</head>
+<body>
+    <form id="login_form" name="login_form" onsubmit="return Check()" action="/login/" method="post">
+        {% csrf_token %}
+        <input id="email_and_phone" type="text" name="email_and_phone" value="{{ email_and_phone }}">
+        <div>
+            <input id="password" type="password" name="password" value="{{ password }}">
+            <input type="button" onclick="Toggle()"><b>Show Password</b>
+            <p style="display: none" id="password_error">Your password must contain between 4 and 60 characters.</p>
+        </div>
+        <input type="submit" value="OK">
+    </form>
+    <script src="{% static 'js/intlTelInput.min.js' %}"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>
