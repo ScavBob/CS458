@@ -20,5 +20,6 @@ import Website.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', Website.views.DenemeView.as_view(), name='Deneme'),
     path('login/', Website.views.LoginPageView.as_view(), name="Login"),
 ]
