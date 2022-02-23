@@ -1,3 +1,6 @@
+let email_and_phone = document.getElementById('email_and_phone');
+let iti = null;
+
 function Toggle(){
     let pass = document.getElementById('password');
     if(pass.type === 'password'){
@@ -13,10 +16,12 @@ document.getElementById('email_and_phone').onkeyup = function (){
     if(email_and_phone.value.length > 0){
         if(email_and_phone.value.match(/[a-zA-z@._-]+/) != null){
             email_and_phone.type = 'text';
+            window.intlTelInput.destroy();
         }else if (email_and_phone.type === 'text'){
             email_and_phone.type = 'tel';
-            window.intlTelInput(email_and_phone,({
+            iti = window.intlTelInput(email_and_phone,({
                 allowDropdown: true,
+                hiddenInput: 'full_phone',
                 initialCountry: 'tr',
                 separateDialCode: true,
                 nationalMode: false,
@@ -36,6 +41,7 @@ function Check(){
     if(pass.value == null || pass.value === ''){
         return false;
     }
+    email_and_phone.value = iti.getNumber();
     return true;
 }
 
