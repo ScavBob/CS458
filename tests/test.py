@@ -11,6 +11,7 @@ driver = webdriver.Chrome(options=chrome_options)
 
 
 # TEST CASE 1 #
+# TEST
 def testcase1():
     mails = ['walther.evans@yahoo.com', '']
 
