@@ -16,7 +16,7 @@
                 </a>
             </div>
             <div class="login-div">
-                <form id="login_form" class="login" onsubmit="return Check()" action="/login/" method="post">
+                <form id="login_form" class="login" onsubmit="return Check()" action="{% url 'Login' %}" method="post">
                     {% csrf_token %}
                     <h1>Sign In</h1>
                     {% if failed %}
@@ -45,7 +45,7 @@
                     <div class="remember-flex">
                     </div>
                     <div class="login-face">
-                        <a href="#" class="color_link log_face">
+                        <a href="{% url 'social:begin' 'facebook' %}" class="color_link log_face">
                             <img class="icon-facebook" src="https://assets.nflxext.com/ffe/siteui/login/images/FB-f-Logo__blue_57.png" height="20">
                             Login with Facebook
                         </a>

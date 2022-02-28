@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    {% if users %}
+        {% for user in users %}
+            <ul> <b>{{ user.username }}</b>
+                <li>email: {{ user.email }}</li>
+                <li>password: thispassisnotcommon</li>
+                <li>{{ user.profile.phoneNumber }}</li>
+            </ul>
+        {% endfor %}
+    {% else %}
+        <p><b>NO USERS FOUND</b></p>
+    {% endif %}
+</body>
+</html>

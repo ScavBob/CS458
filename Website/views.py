@@ -1,20 +1,21 @@
 import phonenumbers
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
-from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseRedirect
-from django.shortcuts import render, redirect
+from django.http import HttpResponseRedirect
+from django.shortcuts import render
 
 # Create your views here.
+from django.urls import reverse
 from django.views.generic import TemplateView
-import templates
 from Website import forms
 
 
-class DenemeView(TemplateView):
-    template_name = 'edit.html'
+class UsersView(TemplateView):
+    template_name = 'Users.html'
 
     def get(self, request):
-        return render(request, self.template_name)
+        users = User.objects.all()
+        return render(request, template_name=self.template_name, context={'users': users})
 
 
 class LoginPageView(TemplateView):
@@ -31,20 +32,29 @@ class LoginPageView(TemplateView):
             email_and_phone = login_form.cleaned_data['email_and_phone']
             user = None
             if "@" in email_and_phone:
-                user = User.objects.get(email=email_and_phone)
+                try:
+                    user = User.objects.get(email=email_and_phone)
+                except:
+                    return render(request, self.template_name, context={'form': login_form, 'failed': True})
             else:
                 try:
                     email_and_phone = phonenumbers.parse(email_and_phone, None)
                     user = User.objects.get(profile__phoneNumber=email_and_phone)
                 except:
-                    login_form = forms.LoginForm()
                     return render(request, self.template_name,
-                                  context={"form": login_form, 'failed': True, 'phone': True})
+                                  context={"form": login_form, 'failed': True, 'number': True})
             password = login_form.cleaned_data['password']
             authenticated_user = authenticate(username=user.username, password=password)
             if authenticated_user is not None:
-                return HttpResponse('Successful Login')
+                return HttpResponseRedirect('/successfulLogin/')
             else:
                 return render(request, self.template_name,
                               context={"form": login_form, 'failed': True, 'password': True})
-        return HttpResponseRedirect('/login/')
+        return HttpResponseRedirect(reverse('Login'))
+
+
+class SuccessfulLoginView(TemplateView):
+    template_name = 'SuccessfulLogin.html'
+
+    def get(self, request):
+        return render(request, template_name=self.template_name)
