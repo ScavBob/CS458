@@ -22,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-mp0hkh73+jz7sv6a^suwjm_gna*ud*2ub9p08^v5axi=3820rt'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['myapp.com', '127.0.0.1', 'localhost']
 
@@ -34,11 +34,10 @@ AUTHENTICATION_BACKENDS = [
 SOCIAL_AUTH_FACEBOOK_KEY = '1132473360860424'
 SOCIAL_AUTH_FACEBOOK_SECRET = '982468dea51101da5bd1b5b0cd0a29f4'
 
-SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
-SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
-    'locale': 'ru_RU',
-    'fields': 'id, name, email, age_range'
-}
+LOGIN_URL = 'Login'
+LOGIN_REDIRECT_URL = 'SuccessfulLogin'
+SOCIAL_AUTH_REDIRECT_IS_HTTPS = False
+SOCIAL_AUTH_LOGIN_ERROR_URL = 'Login'
 
 # Application definition
 
