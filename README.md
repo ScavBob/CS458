@@ -6,7 +6,6 @@ A web application to make events and tournaments with friends more competitive a
 * [Group Members](#group-members)
 * [Introduction](#introduction)
 * [Building](#Building)
-* [License](#license)
 
 ## General Info
 This repository is for the CS458 course Project 1.
@@ -20,8 +19,6 @@ This repository is for the CS458 course Project 1.
 
 ## Introduction
 This app is just the login page of Netflix and contains Selenium automated tests to check the login processes. 
-
-This app is under the GNU General Public License.
 
 ## Building
 
@@ -45,6 +42,3 @@ All you have to do then is run the program via the terminal of your choice using
 The project will be available at:
 
     localhost:8000
-
-## License
-More about licensing can be found [here](LICENSE).
