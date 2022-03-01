@@ -22,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-mp0hkh73+jz7sv6a^suwjm_gna*ud*2ub9p08^v5axi=3820rt'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['myapp.com', '127.0.0.1', 'localhost']
 
@@ -91,8 +91,12 @@ WSGI_APPLICATION = 'Netflix.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'dbd4gi7eqs43vs',
+        'USER': 'azdmdnmmmcebfn',
+        'PASSWORD': '3610bf92debbfa1118c34d82a1b9a3072b40f17d0e2bcb3e789dd24ee1bbe554',
+        'HOST': 'ec2-52-51-155-48.eu-west-1.compute.amazonaws.com',
+        'PORT': '5432',
     }
 }
 
