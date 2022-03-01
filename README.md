@@ -42,3 +42,11 @@ All you have to do then is run the program via the terminal of your choice using
 The project will be available at:
 
     localhost:8000
+
+To run the tests all you have to do is navigate to tests folder in the project folder then run the command:
+
+    py test.py
+    
+For the tests to properly run you need to have Google Chrome installed or alternatively you can download the correct Selenium WebDriver from:
+
+    https://www.selenium.dev/downloads/
