@@ -20,9 +20,13 @@ def testcase1():
         driver.find_element_by_id('email_and_phone').send_keys(mails[i])
         driver.find_element_by_id('password').send_keys(passwords[i])
         driver.find_element_by_xpath('//*[@id="login_form"]/div[3]/button').click()
-        title = driver.title
-        assert title == 'Netflix Login', 'Unexpected Process Results'
-        print('Process Failed Successfully')
+        error = driver.find_element_by_id('error-message').text
+        if i < 2:
+            assert error == 'Sorry, we can\'t find an account with this email address. Please try again.', 'Unexpected Process Results'
+            print('Process Successful')
+        else:
+            assert error == 'Incorrect password. Please try again.', 'Unexpected Process Results'
+            print('Process Successful')
 
 
 # TEST EMPTY CREDENTIALS
@@ -34,8 +38,10 @@ def testcase2():
         driver.find_element_by_id('email_and_phone').send_keys(mails[i])
         driver.find_element_by_id('password').send_keys(passwords[i])
         driver.find_element_by_xpath('//*[@id="login_form"]/div[3]/button').click()
-        title = driver.title
-        assert title == 'Netflix Login', 'Unexpected Process Results'
+        visible = driver.find_element_by_id('warningEmail').is_displayed()
+        if not visible:
+            visible = driver.find_element_by_id('warningPassword').is_displayed()
+        assert visible == True, 'Unexpected Process Results'
         print('Process Failed Successfully')
 
 
@@ -96,7 +102,7 @@ def runTestCases():
     testcase1()
     testcase2()
     testcase3()
-    testcase4()
+    # testcase4()
     testcase5()
     testcase6()
     driver.close()

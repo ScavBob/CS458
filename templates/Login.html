@@ -20,7 +20,7 @@
                     {% csrf_token %}
                     <h1>Sign In</h1>
                     {% if failed %}
-                        <div data-uia="text" class="error-message">
+                        <div data-uia="text" id="error-message" class="error-message">
                         {% if number %}
                             Sorry, we can't find an account with this number. Please make sure to select the correct country code or <b>sign in with email</b>.
                         {% elif password %}
