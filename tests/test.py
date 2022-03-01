@@ -54,8 +54,8 @@ def testcase3():
         driver.find_element_by_id('email_and_phone').send_keys(mails[i])
         driver.find_element_by_id('password').send_keys(passwords[i])
         driver.find_element_by_xpath('//*[@id="login_form"]/div[3]/button').click()
-        title = driver.title
-        assert title == 'Netflix Login', 'Unexpected Process Results'
+        visible = driver.find_element_by_id('warningPassword').is_displayed()
+        assert visible == True, 'Unexpected Process Results'
         print('Process Failed Successfully')
 
 
